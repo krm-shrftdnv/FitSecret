@@ -1,0 +1,25 @@
+{% extends "parts/base" %}
+{% block title %} Metrics {% endblock %}
+
+{% block content %}
+    {% if (message) %}
+        <h2>{{ message }}</h2>
+    {% else %}
+        <h2>Fill your metrics</h2>
+        <form action="/metrics/form" method="post">
+            <label for="height">Height</label>
+            <input type="number" placeholder="Your height" name="height" id="height"><br>
+
+            <label for="OG">OG</label>
+            <input type="number" placeholder="OG" name="OG" id="OG"><br>
+
+            <label for="OT">OT</label>
+            <input type="number" placeholder="OT" name="OT" id="OT"><br>
+
+            <label for="OB">OB</label>
+            <input type="number" placeholder="OB" name="OB" id="OB"><br>
+
+            <input type="submit" value="Save">
+        </form>
+    {% endif %}
+{% endblock %}

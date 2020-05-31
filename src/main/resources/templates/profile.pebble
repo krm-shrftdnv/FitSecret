@@ -1,0 +1,13 @@
+{% extends "parts/base" %}
+{% block title %} Profile {% endblock %}
+
+{% block content %}
+
+    <a href="/metrics"><h2>{{ notification }}</h2></a>
+
+    <a href="/info">Personal Information</a><br>
+    <a href="/metrics">My metrics</a><br>
+    <a href="/plan">Training plan</a><br>
+    <a href="/food">Food recommendations</a><br>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "parts/base" %}
+{% block title %} Metrics {% endblock %}
+
+{% block content %}
+    {% if (noMetrics) %}
+        <h2>{{ message }}</h2>
+        <a href="/metrics/form"><h2>{{ link }}</h2></a>
+    {% else %}
+        <table>
+            <tr>
+                <td></td>
+                <td>Date</td>
+                <td>Height</td>
+                <td>OG</td>
+                <td>OT</td>
+                <td>OB</td>
+            </tr>
+            <tr>
+                <td>Start metrics</td>
+                <td>{{ firstMetrics.date }}</td>
+                <td>{{ firstMetrics.height }}</td>
+                <td>{{ firstMetrics.OG }}</td>
+                <td>{{ firstMetrics.OT }}</td>
+                <td>{{ firstMetrics.OB }}</td>
+            </tr>
+            {% if (hasLast) %}
+                <tr>
+                    <td>Current metrics</td>
+                    <td>{{ lastMetrics.date }}</td>
+                    <td>{{ lastMetrics.height }}</td>
+                    <td>{{ lastMetrics.OG }}</td>
+                    <td>{{ lastMetrics.OT }}</td>
+                    <td>{{ lastMetrics.OB }}</td>
+                </tr>
+            {% endif %}
+        </table>
+    {% endif %}
+{% endblock %}
