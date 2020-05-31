@@ -32,7 +32,7 @@
                     <td>{{ lastMetrics.OT }}</td>
                     <td>{{ lastMetrics.OB }}</td>
                 </tr>
-            {% endif %}
+                {% endif %}
         </table>
     {% endif %}
 {% endblock %}

@@ -8,7 +8,7 @@
         <version>2.2.7.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>itis_804</groupId>
+    <groupId>com.company</groupId>
     <artifactId>fit_secret</artifactId>
     <version>0.0.1</version>
     <name>fit_secret</name>
