@@ -11,6 +11,7 @@
                 <td></td>
                 <td>Date</td>
                 <td>Height</td>
+                <td>Weight</td>
                 <td>OG</td>
                 <td>OT</td>
                 <td>OB</td>
@@ -19,6 +20,7 @@
                 <td>Start metrics</td>
                 <td>{{ firstMetrics.date }}</td>
                 <td>{{ firstMetrics.height }}</td>
+                <td>{{ firstMetrics.weight }}</td>
                 <td>{{ firstMetrics.OG }}</td>
                 <td>{{ firstMetrics.OT }}</td>
                 <td>{{ firstMetrics.OB }}</td>
@@ -28,6 +30,7 @@
                     <td>Current metrics</td>
                     <td>{{ lastMetrics.date }}</td>
                     <td>{{ lastMetrics.height }}</td>
+                    <td>{{ lastMetrics.weight }}</td>
                     <td>{{ lastMetrics.OG }}</td>
                     <td>{{ lastMetrics.OT }}</td>
                     <td>{{ lastMetrics.OB }}</td>

@@ -1,0 +1,63 @@
+{% extends "parts/base" %}
+{% block title %} Food {% endblock %}
+
+{% block content %}
+    {% if (hasMetrics) %}
+        <h3>Your maximal sum of calories per day</h3>
+        <h2>{{ caloriesSum }}</h2>
+    {% else %}
+        <a href="/metrics/form"><h2>{{ noMessageMetrics }}</h2></a>
+    {% endif %}
+
+    <h2>Products list</h2>
+    <ul id="productsList">
+        <li id="milkProducts"> Milk Products
+            <ul>
+                {% for product in milkProducts %}
+                    <li style="color: {% if (product.acceptable) %} green {% elseif (product.acceptableAM) %} yellow {% else %} red {% endif %}">{{ product.name }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+        <li id="cerealProducts"> Cereal Products
+            <ul>
+                {% for product in cerealProducts %}
+                    <li style="color: {% if (product.acceptable) %} green {% elseif (product.acceptableAM) %} yellow {% else %} red {% endif %}">{{ product.name }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+        <li id="vegetableProducts"> Vegetable Products
+            <ul>
+                {% for product in vegetableProducts %}
+                    <li style="color: {% if (product.acceptable) %} green {% elseif (product.acceptableAM) %} yellow {% else %} red {% endif %}">{{ product.name }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+        <li id="fruitProducts"> Fruit Products
+            <ul>
+                {% for product in fruitProducts %}
+                    <li style="color: {% if (product.acceptable) %} green {% elseif (product.acceptableAM) %} yellow {% else %} red {% endif %}">{{ product.name }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+        <li id="meatProducts"> Meat Products
+            <ul>
+                {% for product in meatProducts %}
+                    <li style="color: {% if (product.acceptable) %} green {% elseif (product.acceptableAM) %} yellow {% else %} red {% endif %}">{{ product.name }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+        <li id="groceryProducts"> Grocery Products
+            <ul>
+                {% for product in groceryProducts %}
+                    <li style="color: {% if (product.acceptable) %} green {% elseif (product.acceptableAM) %} yellow {% else %} red {% endif %}">{{ product.name }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+
+{#    <script>#}
+{#        let productList = document.getElementById("productsList");#}
+{#        let listElements = productList.childNodes;#}
+{#        listElements.addEventListener("click", () => alert("clicked"));#}
+{#    </script>#}
+{% endblock %}

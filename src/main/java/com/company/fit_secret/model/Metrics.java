@@ -22,6 +22,7 @@ public class Metrics {
 //    @JoinColumn(name = "userId", referencedColumnName = "userId")
 //    private User user;
     private int height;
+    private int weight;
     private int OB;
     private int OG;
     private int OT;

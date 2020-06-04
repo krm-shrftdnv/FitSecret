@@ -1,0 +1,15 @@
+{% extends "parts/base" %}
+{% block title %} Training {% endblock %}
+
+{% block content %}
+    {% if (hasComplexes) %}
+        <h2>Complexes for you</h2>
+        {% for complex in complexes %}
+            <a href="/complex{{ complex.id }}"><h3>{{ complex.name }}</h3></a>
+        {% endfor %}
+    {% else %}
+        <h2>There is no complexes for you yet</h2>
+        <a href="/metrics/form"><h3>You can go fill your metrics to get special complex for your body type!</h3></a>
+        <p>Or just wait for some time until our specialists develop a complex specifically for you.</p>
+    {% endif %}
+{% endblock %}

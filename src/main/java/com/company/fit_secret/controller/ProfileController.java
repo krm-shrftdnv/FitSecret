@@ -2,8 +2,8 @@ package com.company.fit_secret.controller;
 
 import com.company.fit_secret.config.security.details.UserDetailsImpl;
 import com.company.fit_secret.dto.UserDto;
-import com.company.fit_secret.service.MetricsService;
-import com.company.fit_secret.service.UsersService;
+import com.company.fit_secret.service.interfaces.MetricsService;
+import com.company.fit_secret.service.interfaces.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;

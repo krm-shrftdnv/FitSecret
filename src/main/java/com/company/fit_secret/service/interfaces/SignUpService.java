@@ -1,4 +1,4 @@
-package com.company.fit_secret.service;
+package com.company.fit_secret.service.interfaces;
 
 import com.company.fit_secret.service.exceptions.DuplicateEntryException;
 import com.company.fit_secret.service.exceptions.NoMatchException;

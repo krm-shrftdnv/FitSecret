@@ -10,10 +10,9 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString(exclude = "injuredUsers")
-@EqualsAndHashCode(exclude = "injuredUsers")
-@Entity
-@Table(name = "injury")
+@ToString(exclude = {"injuredUsers","complexes"})
+@EqualsAndHashCode(exclude = {"injuredUsers","complexes"})
+@Entity(name = "injury")
 public class Injury {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +26,9 @@ public class Injury {
             inverseJoinColumns = {@JoinColumn(name = "user_id")}
     )
     private Set<User> injuredUsers = new HashSet<>();
+
+    @ManyToMany(mappedBy = "injuries")
+    private Set<Complex> complexes = new HashSet<>();
 
     public static Injury from(String injuryString) {
         return Injury.builder()

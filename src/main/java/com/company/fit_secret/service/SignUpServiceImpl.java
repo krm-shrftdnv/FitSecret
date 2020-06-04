@@ -5,6 +5,7 @@ import com.company.fit_secret.service.exceptions.DuplicateEntryException;
 import com.company.fit_secret.service.exceptions.NoMatchException;
 import com.company.fit_secret.dto.SignUpDto;
 import com.company.fit_secret.model.User;
+import com.company.fit_secret.service.interfaces.SignUpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

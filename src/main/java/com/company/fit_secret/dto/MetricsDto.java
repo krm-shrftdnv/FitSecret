@@ -6,6 +6,7 @@ import lombok.Data;
 public class MetricsDto {
 
     private int height;
+    private int weight;
     private int OB;
     private int OG;
     private int OT;

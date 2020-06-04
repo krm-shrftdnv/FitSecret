@@ -1,7 +1,7 @@
 package com.company.fit_secret.controller;
 
 import com.company.fit_secret.dto.SignUpDto;
-import com.company.fit_secret.service.SignUpService;
+import com.company.fit_secret.service.interfaces.SignUpService;
 import com.company.fit_secret.service.exceptions.DuplicateEntryException;
 import com.company.fit_secret.service.exceptions.NoMatchException;
 import org.springframework.beans.factory.annotation.Autowired;

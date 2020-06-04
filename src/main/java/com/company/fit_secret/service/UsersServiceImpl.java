@@ -1,9 +1,11 @@
 package com.company.fit_secret.service;
 
+import com.company.fit_secret.model.enums.Activity;
 import com.company.fit_secret.repository.InjuriesRepository;
 import com.company.fit_secret.repository.UsersRepository;
 import com.company.fit_secret.model.Injury;
 import com.company.fit_secret.model.User;
+import com.company.fit_secret.service.interfaces.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,9 +43,22 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional
     @Override
+    public void setActivity(Long userId, String activityString) {
+        User user = usersRepository.findById(userId).get();
+        user.setActivity(Activity.valueOf(activityString));
+        usersRepository.save(user);
+    }
+
+    @Transactional
+    @Override
     public List<Injury> getUserInjuries(Long userId) {
         User user = usersRepository.findById(userId).get();
         return new ArrayList<>(user.getInjuries());
+    }
+
+    @Override
+    public User getUserById(Long userId) {
+        return usersRepository.findById(userId).get();
     }
 
 }

@@ -10,6 +10,9 @@
             <label for="height">Height</label>
             <input type="number" placeholder="Your height" name="height" id="height"><br>
 
+            <label for="weight">Weight</label>
+            <input type="number" placeholder="Your weight" name="weight" id="weight"><br>
+
             <label for="OG">OG</label>
             <input type="number" placeholder="OG" name="OG" id="OG"><br>
 

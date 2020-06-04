@@ -4,7 +4,7 @@ import com.company.fit_secret.config.security.details.UserDetailsImpl;
 import com.company.fit_secret.dto.MetricsDto;
 import com.company.fit_secret.dto.UserDto;
 import com.company.fit_secret.model.Metrics;
-import com.company.fit_secret.service.MetricsService;
+import com.company.fit_secret.service.interfaces.MetricsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;

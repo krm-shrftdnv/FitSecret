@@ -7,7 +7,7 @@
 
     <a href="/info">Personal Information</a><br>
     <a href="/metrics">My metrics</a><br>
-    <a href="/plan">Training plan</a><br>
+    <a href="/training">Training plan</a><br>
     <a href="/food">Food recommendations</a><br>
 
 {% endblock %}

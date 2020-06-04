@@ -2,6 +2,7 @@ package com.company.fit_secret.dto;
 
 import com.company.fit_secret.model.User;
 import com.company.fit_secret.model.Injury;
+import com.company.fit_secret.model.enums.Activity;
 import lombok.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class UserDto {
     private String fullName;
     private int age;
     private String email;
+    private Activity activity;
     private Set<Injury> injuries;
 
     public static UserDto from(User user) {
@@ -26,6 +28,7 @@ public class UserDto {
                 .userId(user.getUserId())
                 .fullName(user.getFullName())
                 .age(user.getAge())
+                .activity(user.getActivity())
                 .injuries(user.getInjuries())
                 .email(user.getEmail())
                 .build();

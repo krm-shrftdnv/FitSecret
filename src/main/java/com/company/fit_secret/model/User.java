@@ -1,5 +1,6 @@
 package com.company.fit_secret.model;
 
+import com.company.fit_secret.model.enums.Activity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,6 +28,8 @@ public class User {
     @Column(unique = true)
     private String email;
     private String password;
+
+    private Activity activity;
 
     @ManyToMany(mappedBy = "injuredUsers")
     private Set<Injury> injuries = new HashSet<>();

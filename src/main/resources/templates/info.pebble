@@ -7,6 +7,22 @@
     <p>Full name: {{ fullName }}</p>
     <p>Age: {{ age }}</p>
     <p>Email: {{ email }}</p>
+
+    {% if (hasActivity) %}
+        <p>Activity level: {{ activity }}</p>
+    {% else %}
+        <h2>{{ activityMessage }}</h2>
+        <form action="/setActivity" method="post">
+            <label for="activity"></label>
+            <select id="activity" name="activity">
+                {% for activity in activities %}
+                <option value="{{ activity }}">{{ activity }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Save activity">
+        </form>
+    {% endif %}
+
     {% if (hasInjuries) %}
 <p>Injuries:</p>
         <ul>
@@ -31,6 +47,7 @@
 
     {% if(hasMetrics) %}
         <p>Height: {{ height }}</p>
+        <p>Weight: {{ weight }}</p>
         <p>OG: {{ OG }}</p>
         <p>OT: {{ OT }}</p>
         <p>OB: {{ OB }}</p>

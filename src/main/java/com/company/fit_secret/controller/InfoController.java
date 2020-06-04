@@ -4,9 +4,10 @@ import com.company.fit_secret.config.security.details.UserDetailsImpl;
 import com.company.fit_secret.dto.UserDto;
 import com.company.fit_secret.model.Injury;
 import com.company.fit_secret.model.Metrics;
-import com.company.fit_secret.service.InjuriesService;
-import com.company.fit_secret.service.MetricsService;
-import com.company.fit_secret.service.UsersService;
+import com.company.fit_secret.model.enums.Activity;
+import com.company.fit_secret.service.interfaces.InjuriesService;
+import com.company.fit_secret.service.interfaces.MetricsService;
+import com.company.fit_secret.service.interfaces.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -34,14 +35,28 @@ public class InfoController {
     public String getInfoPage(Authentication authentication, Model model) {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         UserDto user = UserDto.from(userDetails.getUser());
+        user = UserDto.from(usersService.getUserById(user.getUserId()));
         model.addAttribute("fullName", user.getFullName());
         model.addAttribute("age", user.getAge());
         model.addAttribute("email", user.getEmail());
-        if (usersService.getUserInjuries(user.getUserId()).size() != 0 ) {
+
+        if (user.getActivity() == null) {
+            String[] activityStrings = new String[Activity.values().length];
+            for (int i = 0; i < Activity.values().length; i++) {
+                activityStrings[i] = Activity.values()[i].toString();
+            }
+            model.addAttribute("hasActivity", false);
+            model.addAttribute("activityMessage", "Select and save your desired activity level");
+            model.addAttribute("activities", activityStrings);
+        } else {
+            model.addAttribute("hasActivity", true);
+            model.addAttribute("activity", user.getActivity());
+        }
+
+        if (usersService.getUserInjuries(user.getUserId()).size() != 0) {
             model.addAttribute("hasInjuries", true);
             model.addAttribute("injuries", usersService.getUserInjuries(user.getUserId()));
-        }
-        else {
+        } else {
             model.addAttribute("hasInjuries", false);
             model.addAttribute("injuriesMessage", "You should select your injuries or match that you haven't any.");
             List<Injury> injuries = injuriesService.getAllInjuries();
@@ -52,6 +67,7 @@ public class InfoController {
         if (lastMetrics.isPresent()) {
             model.addAttribute("hasMetrics", true);
             model.addAttribute("height", lastMetrics.get().getHeight());
+            model.addAttribute("weight", lastMetrics.get().getWeight());
             model.addAttribute("OG", lastMetrics.get().getOG());
             model.addAttribute("OT", lastMetrics.get().getOT());
             model.addAttribute("OB", lastMetrics.get().getOB());
@@ -68,6 +84,15 @@ public class InfoController {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         UserDto user = UserDto.from(userDetails.getUser());
         usersService.saveInjuries(user.getUserId(), injuries);
+        return "redirect:/info";
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping("/setActivity")
+    public String setActivityLevel(Authentication authentication, @RequestParam(name = "activity") String activityString) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        UserDto user = UserDto.from(userDetails.getUser());
+        usersService.setActivity(user.getUserId(), activityString);
         return "redirect:/info";
     }
 
