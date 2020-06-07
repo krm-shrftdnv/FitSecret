@@ -3,18 +3,22 @@
 
 {% block content %}
     <form action="/signIn" method="post">
-        <span class="error" style="color: red">{{ error }}</span>
-        <label for="email">Enter email:</label>
-        <input type="text" name="email" id="email" placeholder="email"><br>
+        <div class="form-group ">
+            <span class="error" style="color: red">{{ error }}</span>
+            <label for="email">Enter email:</label>
+            <input type="text" name="email" id="email" class="form-control" placeholder="email"><br>
 
-        <label for="password">Enter password:</label>
-        <input type="password" name="password" id="password" placeholder="password"><br>
+            <label for="password">Enter password:</label>
+            <input type="password" name="password" class="form-control" id="password" placeholder="password"><br>
 
-        <input type="hidden" name="{{ _csrf.parameterName }}" value="{{ _csrf.token }}">
-        <input type="submit" value="Sign In">
+            <input type="hidden" name="{{ _csrf.parameterName }}" value="{{ _csrf.token }}">
+            <input type="submit" class="btn btn-light" value="Sign In">
+        </div>
     </form>
 
     <form action="/signUp" method="get">
-        <input type="submit" value="Sign Up">
+        <div class="form-group mb-2">
+            <input type="submit" class="btn btn-light" value="Sign Up">
+        </div>
     </form>
 {% endblock %}

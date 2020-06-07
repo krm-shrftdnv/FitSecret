@@ -3,6 +3,7 @@ package com.company.fit_secret.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -25,7 +26,7 @@ public class Complex {
             joinColumns = {@JoinColumn(name = "id")},
             inverseJoinColumns = {@JoinColumn(name = "injuryId")}
     )
-    private Set<Injury> injuries;
+    private Set<Injury> injuries = new HashSet<>();
 
     @ManyToMany
     @JoinTable(
@@ -33,5 +34,5 @@ public class Complex {
             joinColumns = {@JoinColumn(name = "id")},
             inverseJoinColumns = {@JoinColumn(name = "typeId")}
     )
-    private Set<Type> types;
+    private Set<Type> types = new HashSet<>();
 }

@@ -16,6 +16,7 @@ import com.company.fit_secret.service.interfaces.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -38,6 +39,7 @@ public class ComplexServiceImpl implements ComplexService {
     @Autowired
     UsersService usersService;
 
+    @Transactional
     @Override
     public Optional<List<Complex>> findAllComplexesForUser(Long userId) {
         User user = usersRepository.findById(userId).get();

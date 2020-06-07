@@ -6,6 +6,11 @@
         <h2>{{ message }}</h2>
         <a href="/metrics/form"><h2>{{ link }}</h2></a>
     {% else %}
+        {% if(needMetrics) %}
+            <a href="/metrics/form"><h2>{{ message }}</h2></a>
+        {% else %}
+            <h2>{{ message }}</h2>
+        {% endif %}
         <table>
             <tr>
                 <td></td>
@@ -35,7 +40,7 @@
                     <td>{{ lastMetrics.OT }}</td>
                     <td>{{ lastMetrics.OB }}</td>
                 </tr>
-                {% endif %}
+            {% endif %}
         </table>
     {% endif %}
 {% endblock %}

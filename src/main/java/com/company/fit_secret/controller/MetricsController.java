@@ -35,6 +35,18 @@ public class MetricsController {
             model.addAttribute("message", "You haven't get any metrics yet.");
             model.addAttribute("link", "Go to fill the first ones.");
         } else {
+            //check that last metrics update was more than week ago
+            if(metricsService.getUserLastMetrics(user.getUserId()).isPresent()) {
+                LocalDateTime afterLastUpdate = metricsService.getUserLastMetrics(user.getUserId()).get().getDate().plusMinutes(5);
+                if (afterLastUpdate.isAfter(LocalDateTime.now())) {
+                    model.addAttribute("needMetrics", false);
+                    model.addAttribute("message", "You should enter your new metrics on " + afterLastUpdate.getDayOfMonth() + " of " + afterLastUpdate.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH));
+                }
+                else {
+                    model.addAttribute("needMetrics", true);
+                    model.addAttribute("message", "You should update your metrics");
+                }
+            }
             Metrics firstMetrics = metricsService.getUserFirstMetrics(user.getUserId()).get();
             model.addAttribute("firstMetrics", firstMetrics);
             if(metricsService.getUserLastMetrics(user.getUserId()).isPresent()) {
@@ -53,7 +65,7 @@ public class MetricsController {
         UserDto user = UserDto.from(userDetails.getUser());
         //check that last metrics update was more than week ago
         if(metricsService.getUserLastMetrics(user.getUserId()).isPresent()) {
-            LocalDateTime afterLastUpdate = metricsService.getUserLastMetrics(user.getUserId()).get().getDate().plusDays(7);
+            LocalDateTime afterLastUpdate = metricsService.getUserLastMetrics(user.getUserId()).get().getDate().plusMinutes(5);
             if (afterLastUpdate.isAfter(LocalDateTime.now()))
                 model.addAttribute("message", "You should enter your new metrics on " + afterLastUpdate.getDayOfMonth() + " of " + afterLastUpdate.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH));
         }

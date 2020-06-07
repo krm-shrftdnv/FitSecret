@@ -7,6 +7,7 @@ import com.company.fit_secret.model.Product;
 import com.company.fit_secret.service.ProductsServiceImpl;
 import com.company.fit_secret.service.interfaces.MetricsService;
 import com.company.fit_secret.service.interfaces.ProductsService;
+import com.company.fit_secret.service.interfaces.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -21,6 +22,8 @@ public class FoodRecommendationsController {
     ProductsService productsService;
     @Autowired
     MetricsService metricsService;
+    @Autowired
+    UsersService usersService;
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/food")
@@ -34,6 +37,7 @@ public class FoodRecommendationsController {
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         UserDto user = UserDto.from(userDetails.getUser());
+        user = UserDto.from(usersService.getUserById(user.getUserId()));
 
         if(metricsService.getUserLastMetrics(user.getUserId()).isPresent()) {
             model.addAttribute("hasMetrics", true);
@@ -57,8 +61,8 @@ public class FoodRecommendationsController {
                     break;
                 }
             }
-            Double caloriesSum = (88.36 + 13.4 * metrics.getWeight() + 4.8 * metrics.getHeight() - 5.7 * user.getAge()) * activityCoefficient;
-            model.addAttribute("caloriesSum", caloriesSum);
+            double caloriesSum = (88.36 + 13.4 * metrics.getWeight() + 4.8 * metrics.getHeight() - 5.7 * user.getAge()) * activityCoefficient;
+            model.addAttribute("caloriesSum", (int) caloriesSum);
         } else {
             model.addAttribute("hasMetrics", false);
             model.addAttribute("noMessageMetrics", "You should enter your metrics to get your maximal sum of calories per day");

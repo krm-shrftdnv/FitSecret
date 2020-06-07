@@ -92,6 +92,7 @@ public class InfoController {
     public String setActivityLevel(Authentication authentication, @RequestParam(name = "activity") String activityString) {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         UserDto user = UserDto.from(userDetails.getUser());
+        user = UserDto.from(usersService.getUserById(user.getUserId()));
         usersService.setActivity(user.getUserId(), activityString);
         return "redirect:/info";
     }

@@ -1,6 +1,5 @@
 {% extends "parts/base" %}
 {% block title %} Sign up {% endblock %}
-
 {% block content %}
     <h3>Sign Up</h3>
     <form action="/signUp" method="post">

@@ -4,7 +4,7 @@
 {% block content %}
     {% if (hasMetrics) %}
         <h3>Your maximal sum of calories per day</h3>
-        <h2>{{ caloriesSum }}</h2>
+        <h2>{{ caloriesSum }} calories</h2>
     {% else %}
         <a href="/metrics/form"><h2>{{ noMessageMetrics }}</h2></a>
     {% endif %}
