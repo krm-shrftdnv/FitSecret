@@ -46,7 +46,7 @@ public class InfoController {
                 activityStrings[i] = Activity.values()[i].toString();
             }
             model.addAttribute("hasActivity", false);
-            model.addAttribute("activityMessage", "Select and save your desired activity level");
+            model.addAttribute("activityMessage", "Выберите и сохраните ваш уровень активности");
             model.addAttribute("activities", activityStrings);
         } else {
             model.addAttribute("hasActivity", true);
@@ -58,7 +58,7 @@ public class InfoController {
             model.addAttribute("injuries", usersService.getUserInjuries(user.getUserId()));
         } else {
             model.addAttribute("hasInjuries", false);
-            model.addAttribute("injuriesMessage", "You should select your injuries or match that you haven't any.");
+            model.addAttribute("injuriesMessage", "Вы должны выбрать Ваши заболевания или указать, что таковых не имеется.");
             List<Injury> injuries = injuriesService.getAllInjuries();
             model.addAttribute("injuriesList", injuries);
         }
@@ -73,7 +73,7 @@ public class InfoController {
             model.addAttribute("OB", lastMetrics.get().getOB());
         } else {
             model.addAttribute("hasMetrics", false);
-            model.addAttribute("metricsMessage", "You should enter your metrics for correct work of our system");
+            model.addAttribute("metricsMessage", "Вы должны ввести Ваши замеры для корректной работы системы.");
         }
         return "info";
     }

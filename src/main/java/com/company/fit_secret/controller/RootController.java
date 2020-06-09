@@ -11,7 +11,7 @@ public class RootController {
     public String getRootPage(Authentication authentication) {
         if (authentication != null) {
             return "redirect:/profile";
-        } else return "redirect:/signIn";
+        } else return "welcome";
     }
 
 }

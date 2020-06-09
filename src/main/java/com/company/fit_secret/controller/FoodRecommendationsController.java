@@ -65,7 +65,7 @@ public class FoodRecommendationsController {
             model.addAttribute("caloriesSum", (int) caloriesSum);
         } else {
             model.addAttribute("hasMetrics", false);
-            model.addAttribute("noMessageMetrics", "You should enter your metrics to get your maximal sum of calories per day");
+            model.addAttribute("noMessageMetrics", "Вы должны ввести Ваши замеры, чтобы получить максимальную сумму калорий.");
         }
         return "food";
     }

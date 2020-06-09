@@ -2,6 +2,7 @@ package com.company.fit_secret.controller;
 
 import com.company.fit_secret.config.security.details.UserDetailsImpl;
 import com.company.fit_secret.dto.MetricsDto;
+import com.company.fit_secret.dto.ReturningMetricsDto;
 import com.company.fit_secret.dto.UserDto;
 import com.company.fit_secret.model.Metrics;
 import com.company.fit_secret.service.interfaces.MetricsService;
@@ -32,27 +33,29 @@ public class MetricsController {
         List<Metrics> userMetrics = metricsService.getMetricsByUserId(user.getUserId());
         if (userMetrics.size() == 0) {
             model.addAttribute("noMetrics", true);
-            model.addAttribute("message", "You haven't get any metrics yet.");
-            model.addAttribute("link", "Go to fill the first ones.");
+            model.addAttribute("message", "У вас пока нет текущих замеров");
+            model.addAttribute("link", "Введите первые!");
         } else {
             //check that last metrics update was more than week ago
             if(metricsService.getUserLastMetrics(user.getUserId()).isPresent()) {
-                LocalDateTime afterLastUpdate = metricsService.getUserLastMetrics(user.getUserId()).get().getDate().plusMinutes(5);
+                LocalDateTime afterLastUpdate = metricsService.getUserLastMetrics(user.getUserId()).get().getDate().plusDays(7);
                 if (afterLastUpdate.isAfter(LocalDateTime.now())) {
                     model.addAttribute("needMetrics", false);
-                    model.addAttribute("message", "You should enter your new metrics on " + afterLastUpdate.getDayOfMonth() + " of " + afterLastUpdate.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH));
+                    model.addAttribute("message", "Вы должны будете обновить замеры " + afterLastUpdate.getDayOfMonth() + " " + afterLastUpdate.getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH));
                 }
                 else {
                     model.addAttribute("needMetrics", true);
-                    model.addAttribute("message", "You should update your metrics");
+                    model.addAttribute("message", "Обновите Ваши замеры.");
                 }
             }
             Metrics firstMetrics = metricsService.getUserFirstMetrics(user.getUserId()).get();
-            model.addAttribute("firstMetrics", firstMetrics);
+            ReturningMetricsDto firstMetricsDto = ReturningMetricsDto.from(firstMetrics);
+            model.addAttribute("firstMetrics", firstMetricsDto);
             if(metricsService.getUserLastMetrics(user.getUserId()).isPresent()) {
                 Metrics lastMetrics = metricsService.getUserLastMetrics(user.getUserId()).get();
+                ReturningMetricsDto lastMetricsDto = ReturningMetricsDto.from(lastMetrics);
                 model.addAttribute("hasLast", true);
-                model.addAttribute("lastMetrics", lastMetrics);
+                model.addAttribute("lastMetrics", lastMetricsDto);
             }
         }
         return "metrics";
@@ -65,9 +68,9 @@ public class MetricsController {
         UserDto user = UserDto.from(userDetails.getUser());
         //check that last metrics update was more than week ago
         if(metricsService.getUserLastMetrics(user.getUserId()).isPresent()) {
-            LocalDateTime afterLastUpdate = metricsService.getUserLastMetrics(user.getUserId()).get().getDate().plusMinutes(5);
+            LocalDateTime afterLastUpdate = metricsService.getUserLastMetrics(user.getUserId()).get().getDate().plusDays(7);
             if (afterLastUpdate.isAfter(LocalDateTime.now()))
-                model.addAttribute("message", "You should enter your new metrics on " + afterLastUpdate.getDayOfMonth() + " of " + afterLastUpdate.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH));
+                model.addAttribute("message", "Вы должны будете обновить замеры " + afterLastUpdate.getDayOfMonth() + " " + afterLastUpdate.getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH));
         }
         return "metrics_form";
     }

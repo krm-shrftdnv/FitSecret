@@ -26,7 +26,7 @@ public class ProfileController {
         UserDto user = UserDto.from(userDetails.getUser());
 
         if(metricsService.getMetricsByUserId(user.getUserId()).size() == 0){
-            model.addAttribute("notification", "You should enter your metrics for correct work of our system");
+            model.addAttribute("notification", "Вы должны ввести Ваши замеры для корректной работы системы");
         }
 
         return "profile";

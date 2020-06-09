@@ -2,27 +2,35 @@
 {% block title %} Metrics {% endblock %}
 
 {% block content %}
-    {% if (message) %}
-        <h2>{{ message }}</h2>
-    {% else %}
-        <h2>Fill your metrics</h2>
-        <form action="/metrics/form" method="post">
-            <label for="height">Height</label>
-            <input type="number" placeholder="Your height" name="height" id="height"><br>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            {% if (message) %}
+                <h2>{{ message }}</h2>
+            {% else %}
+                <h2>Введите ваши замеры</h2>
+                <form action="/metrics/form" method="post">
+                    <div class="form-group">
+                        <label for="height">Рост</label>
+                        <input type="number" placeholder="Your height" class="form-control" name="height" id="height"><br>
 
-            <label for="weight">Weight</label>
-            <input type="number" placeholder="Your weight" name="weight" id="weight"><br>
+                        <label for="weight">Вес</label>
+                        <input type="number" placeholder="Your weight" class="form-control" name="weight" id="weight"><br>
 
-            <label for="OG">OG</label>
-            <input type="number" placeholder="OG" name="OG" id="OG"><br>
+                        <label for="OG">ОГ</label>
+                        <input type="number" placeholder="OG" class="form-control" name="OG" id="OG"><br>
 
-            <label for="OT">OT</label>
-            <input type="number" placeholder="OT" name="OT" id="OT"><br>
+                        <label for="OT">ОТ</label>
+                        <input type="number" placeholder="OT" class="form-control" name="OT" id="OT"><br>
 
-            <label for="OB">OB</label>
-            <input type="number" placeholder="OB" name="OB" id="OB"><br>
+                        <label for="OB">ОБ</label>
+                        <input type="number" placeholder="OB" class="form-control" name="OB" id="OB"><br>
 
-            <input type="submit" value="Save">
-        </form>
-    {% endif %}
+                        <input type="submit" class="btn btn-light" value="Save">
+                    </div>
+                </form>
+            {% endif %}
+        </div>
+        <div class="col-3"></div>
+    </div>
 {% endblock %}

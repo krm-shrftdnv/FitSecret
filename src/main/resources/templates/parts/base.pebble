@@ -17,6 +17,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
             integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
             crossorigin="anonymous"></script>
+    {% block style %} {% endblock %}
     <style>
         .checkselect {
             position: relative;
@@ -85,7 +86,7 @@
         }
     </style>
 </head>
-<body style="background-image: url(/img/no_logo_background.png); background-repeat: no-repeat; background-size: cover">
+<body style="background-image: url(/img/no_logo_background.png); background-repeat: no-repeat; background-size: cover; background-attachment: fixed">
 <header>
     {% block header %}{% endblock %}
 </header>

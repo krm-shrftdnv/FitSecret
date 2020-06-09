@@ -2,45 +2,51 @@
 {% block title %} Metrics {% endblock %}
 
 {% block content %}
-    {% if (noMetrics) %}
-        <h2>{{ message }}</h2>
-        <a href="/metrics/form"><h2>{{ link }}</h2></a>
-    {% else %}
-        {% if(needMetrics) %}
-            <a href="/metrics/form"><h2>{{ message }}</h2></a>
-        {% else %}
-            <h2>{{ message }}</h2>
-        {% endif %}
-        <table>
-            <tr>
-                <td></td>
-                <td>Date</td>
-                <td>Height</td>
-                <td>Weight</td>
-                <td>OG</td>
-                <td>OT</td>
-                <td>OB</td>
-            </tr>
-            <tr>
-                <td>Start metrics</td>
-                <td>{{ firstMetrics.date }}</td>
-                <td>{{ firstMetrics.height }}</td>
-                <td>{{ firstMetrics.weight }}</td>
-                <td>{{ firstMetrics.OG }}</td>
-                <td>{{ firstMetrics.OT }}</td>
-                <td>{{ firstMetrics.OB }}</td>
-            </tr>
-            {% if (hasLast) %}
-                <tr>
-                    <td>Current metrics</td>
-                    <td>{{ lastMetrics.date }}</td>
-                    <td>{{ lastMetrics.height }}</td>
-                    <td>{{ lastMetrics.weight }}</td>
-                    <td>{{ lastMetrics.OG }}</td>
-                    <td>{{ lastMetrics.OT }}</td>
-                    <td>{{ lastMetrics.OB }}</td>
-                </tr>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            {% if (noMetrics) %}
+                <h2 style="color: red">{{ message }}</h2>
+                <a href="/metrics/form"><h2>{{ link }}</h2></a>
+            {% else %}
+                {% if(needMetrics) %}
+                    <a href="/metrics/form" style="color: red"><h2>{{ message }}</h2></a>
+                {% else %}
+                    <h2>{{ message }}</h2>
+                {% endif %}
+                <table>
+                    <tr>
+                        <td></td>
+                        <td>Дата</td>
+                        <td>Рост</td>
+                        <td>Вес</td>
+                        <td>ОГ</td>
+                        <td>ОТ</td>
+                        <td>ОБ</td>
+                    </tr>
+                    <tr>
+                        <td>Начальные замеры</td>
+                        <td>{{ firstMetrics.date }}</td>
+                        <td>{{ firstMetrics.height }}</td>
+                        <td>{{ firstMetrics.weight }}</td>
+                        <td>{{ firstMetrics.OG }}</td>
+                        <td>{{ firstMetrics.OT }}</td>
+                        <td>{{ firstMetrics.OB }}</td>
+                    </tr>
+                    {% if (hasLast) %}
+                        <tr>
+                            <td>Теущие замеры</td>
+                            <td>{{ lastMetrics.date }}</td>
+                            <td>{{ lastMetrics.height }}</td>
+                            <td>{{ lastMetrics.weight }}</td>
+                            <td>{{ lastMetrics.OG }}</td>
+                            <td>{{ lastMetrics.OT }}</td>
+                            <td>{{ lastMetrics.OB }}</td>
+                        </tr>
+                    {% endif %}
+                </table>
             {% endif %}
-        </table>
-    {% endif %}
+        </div>
+        <div class="col-3"></div>
+    </div>
 {% endblock %}

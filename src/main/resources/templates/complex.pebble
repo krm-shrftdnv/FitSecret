@@ -2,6 +2,14 @@
 {% block title %} Complex {% endblock %}
 
 {% block content %}
-    <h2>{{ complex.name }}</h2>
-    <pre>{{ complex.description }}</pre>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <h2>{{ complex.name }}</h2>
+            <div style="display: block; height: 500px; overflow-y: scroll; scroll-behavior: smooth">
+                <pre class="lead">{{ complex.description }}</pre>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
 {% endblock %}

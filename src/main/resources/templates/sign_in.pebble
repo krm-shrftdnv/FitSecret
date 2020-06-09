@@ -2,23 +2,31 @@
 {% block title %} Sign in {% endblock %}
 
 {% block content %}
-    <form action="/signIn" method="post">
-        <div class="form-group ">
-            <span class="error" style="color: red">{{ error }}</span>
-            <label for="email">Enter email:</label>
-            <input type="text" name="email" id="email" class="form-control" placeholder="email"><br>
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <h3>Sign In</h3>
+            <form action="/signIn" method="post">
+                <div class="form-group">
+                    <span class="error" style="color: red">{{ error }}</span>
+                    <label for="email">Введите email:</label>
+                    <input type="text" name="email" id="email" class="form-control" placeholder="email"><br>
 
-            <label for="password">Enter password:</label>
-            <input type="password" name="password" class="form-control" id="password" placeholder="password"><br>
+                    <label for="password">Введите пароль:</label>
+                    <input type="password" name="password" class="form-control" id="password"
+                           placeholder="password"><br>
 
-            <input type="hidden" name="{{ _csrf.parameterName }}" value="{{ _csrf.token }}">
-            <input type="submit" class="btn btn-light" value="Sign In">
+                    <input type="hidden" name="{{ _csrf.parameterName }}" value="{{ _csrf.token }}">
+                    <input type="submit" class="btn btn-light" value="Войти">
+                </div>
+            </form>
+
+            <form action="/signUp" method="get">
+                <div class="form-group mb-2">
+                    <input type="submit" class="btn btn-light" value="Зарегистрироваться">
+                </div>
+            </form>
         </div>
-    </form>
-
-    <form action="/signUp" method="get">
-        <div class="form-group mb-2">
-            <input type="submit" class="btn btn-light" value="Sign Up">
-        </div>
-    </form>
+        <div class="col-4"></div>
+    </div>
 {% endblock %}

@@ -2,12 +2,16 @@
 {% block title %} Profile {% endblock %}
 
 {% block content %}
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <a href="/metrics" style="color: red"><h3>{{ notification }}</h3></a>
 
-    <a href="/metrics"><h2>{{ notification }}</h2></a>
-
-    <a href="/info">Personal Information</a><br>
-    <a href="/metrics">My metrics</a><br>
-    <a href="/training">Training plan</a><br>
-    <a href="/food">Food recommendations</a><br>
-
+            <a href="/info"><h2>Информация о вас</h2></a><br>
+            <a href="/metrics"><h2>Мои замеры</h2></a><br>
+            <a href="/training"><h2>Планы тренировок</h2></a><br>
+            <a href="/food"><h2>Рекомендации по питанию</h2></a><br>
+        </div>
+        <div class="col-3"></div>
+    </div>
 {% endblock %}
