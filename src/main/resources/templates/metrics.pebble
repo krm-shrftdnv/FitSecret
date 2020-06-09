@@ -25,7 +25,7 @@
                         <td>ОБ</td>
                     </tr>
                     <tr>
-                        <td>Начальные замеры</td>
+                        <td style="font-weight: bold">Начальные замеры</td>
                         <td>{{ firstMetrics.date }}</td>
                         <td>{{ firstMetrics.height }}</td>
                         <td>{{ firstMetrics.weight }}</td>
@@ -35,7 +35,7 @@
                     </tr>
                     {% if (hasLast) %}
                         <tr>
-                            <td>Теущие замеры</td>
+                            <td style="font-weight: bold">Теущие замеры</td>
                             <td>{{ lastMetrics.date }}</td>
                             <td>{{ lastMetrics.height }}</td>
                             <td>{{ lastMetrics.weight }}</td>

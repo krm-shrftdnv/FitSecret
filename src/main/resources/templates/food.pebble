@@ -15,56 +15,55 @@
         <div class="col-3"></div>
         <div class="col-6">
             {% if (hasMetrics) %}
-                <h3>Максимальное количество калорий в день</h3>
-                <h2>{{ caloriesSum }} калорий</h2>
+                <h3>Максимальное количество калорий в день: <i style="color:green;">{{ caloriesSum }}</i></h3>
             {% else %}
                 <a href="/metrics/form"><h2>{{ noMessageMetrics }}</h2></a>
             {% endif %}
 
             <h2>Список продуктов</h2>
             <p style="color: green"><small>Продукты, которые вы можете есть весь день, отмечены вот так.</small></p>
-            <p style="color: yellow"><small>Продукты, которые вы можете есть в первой половине дня, отмечены вот так.</small></p>
+            <p style="color: blue"><small>Продукты, которые вы можете есть в первой половине дня, отмечены вот так.</small></p>
             <p style="color: red"><small>Продукты, которые есть нельзя, отмечены вот так.</small></p>
             <ul id="tree" class="tree" style="list-style: none">
                 <li id="milkProducts"><u>Молочные продукты</u>
                     <ul style="list-style: none" hidden>
                         {% for product in milkProducts %}
-                            <li style="color: {% if (product.acceptable) %} green {% elseif (product.acceptableAM) %} yellow {% else %} red {% endif %}">{{ product.name }}</li>
+                            <li style="color: {% if (product.acceptable) %} green {% elseif (product.acceptableAM) %} blue {% else %} red {% endif %}">{{ product.name }}</li>
                         {% endfor %}
                     </ul>
                 </li>
                 <li id="cerealProducts"><u>Крупы</u>
                     <ul style="list-style: none" hidden>
                         {% for product in cerealProducts %}
-                            <li style="color: {% if (product.acceptable) %} green {% elseif (product.acceptableAM) %} yellow {% else %} red {% endif %}">{{ product.name }}</li>
+                            <li style="color: {% if (product.acceptable) %} green {% elseif (product.acceptableAM) %} blue {% else %} red {% endif %}">{{ product.name }}</li>
                         {% endfor %}
                     </ul>
                 </li>
                 <li id="vegetableProducts"><u>Овощи</u>
                     <ul style="list-style: none" hidden>
                         {% for product in vegetableProducts %}
-                            <li style="color: {% if (product.acceptable) %} green {% elseif (product.acceptableAM) %} yellow {% else %} red {% endif %}">{{ product.name }}</li>
+                            <li style="color: {% if (product.acceptable) %} green {% elseif (product.acceptableAM) %} blue {% else %} red {% endif %}">{{ product.name }}</li>
                         {% endfor %}
                     </ul>
                 </li>
                 <li id="fruitProducts"><u>Фрукты</u>
                     <ul style="list-style: none" hidden>
                         {% for product in fruitProducts %}
-                            <li style="color: {% if (product.acceptable) %} green {% elseif (product.acceptableAM) %} yellow {% else %} red {% endif %}">{{ product.name }}</li>
+                            <li style="color: {% if (product.acceptable) %} green {% elseif (product.acceptableAM) %} blue {% else %} red {% endif %}">{{ product.name }}</li>
                         {% endfor %}
                     </ul>
                 </li>
                 <li id="meatProducts"><u>Мясные продукты</u>
                     <ul style="list-style: none" hidden>
                         {% for product in meatProducts %}
-                            <li style="color: {% if (product.acceptable) %} green {% elseif (product.acceptableAM) %} yellow {% else %} red {% endif %}">{{ product.name }}</li>
+                            <li style="color: {% if (product.acceptable) %} green {% elseif (product.acceptableAM) %} blue {% else %} red {% endif %}">{{ product.name }}</li>
                         {% endfor %}
                     </ul>
                 </li>
                 <li id="groceryProducts"><u>Бакалея</u>
                     <ul style="list-style: none" hidden>
                         {% for product in groceryProducts %}
-                            <li style="color: {% if (product.acceptable) %} green {% elseif (product.acceptableAM) %} yellow {% else %} red {% endif %}">{{ product.name }}</li>
+                            <li style="color: {% if (product.acceptable) %} green {% elseif (product.acceptableAM) %} blue {% else %} red {% endif %}">{{ product.name }}</li>
                         {% endfor %}
                     </ul>
                 </li>

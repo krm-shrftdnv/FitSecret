@@ -5,7 +5,7 @@
     <div class="row">
     <div class="col-3"></div>
     <div class="col-6">
-    <h2>Информация о вас</h2>
+    <h2>Личная информация</h2>
     <div class="col"><h4>Ф.И.О.:</h4>
         <p> {{ fullName }}</p></div>
     <div class="col"><h4>Возраст:</h4>
@@ -57,11 +57,11 @@
         <div class="col">
             <div class="col">
                 {% if(hasMetrics) %}
-                    <p>Height: {{ height }}</p>
-                    <p>Weight: {{ weight }}</p>
-                    <p>OG: {{ OG }}</p>
-                    <p>OT: {{ OT }}</p>
-                    <p>OB: {{ OB }}</p>
+                    <span><b>Height:</b> {{ height }}</span><br/>
+                    <span><b>Weight:</b> {{ weight }}</span><br/>
+                    <span><b>OG:</b> {{ OG }}</span><br/>
+                    <span><b>OT:</b> {{ OT }}</span><br/>
+                    <span><b>OB:</b> {{ OB }}</span><br/>
                 {% else %}
                     <a href="/metrics/form">{{ metricsMessage }}</a>
                 {% endif %}

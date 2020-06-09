@@ -7,7 +7,7 @@
         <div class="col-6">
             <a href="/metrics" style="color: red"><h3>{{ notification }}</h3></a>
 
-            <a href="/info"><h2>Информация о вас</h2></a><br>
+            <a href="/info"><h2>Личная информация</h2></a><br>
             <a href="/metrics"><h2>Мои замеры</h2></a><br>
             <a href="/training"><h2>Планы тренировок</h2></a><br>
             <a href="/food"><h2>Рекомендации по питанию</h2></a><br>
