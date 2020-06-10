@@ -41,27 +41,7 @@ public class FoodRecommendationsController {
 
         if(metricsService.getUserLastMetrics(user.getUserId()).isPresent()) {
             model.addAttribute("hasMetrics", true);
-            Metrics metrics = metricsService.getUserLastMetrics(user.getUserId()).get();
-            double activityCoefficient = 0;
-            switch (user.getActivity()) {
-                case ACTIVE: {
-                    activityCoefficient = 1.55;
-                    break;
-                }
-                case PASSIVE: {
-                    activityCoefficient = 1.2;
-                    break;
-                }
-                case LOW_ACTIVE: {
-                    activityCoefficient = 1.375;
-                    break;
-                }
-                case HIGH_ACTIVE: {
-                    activityCoefficient = 1.725;
-                    break;
-                }
-            }
-            double caloriesSum = (88.36 + 13.4 * metrics.getWeight() + 4.8 * metrics.getHeight() - 5.7 * user.getAge()) * activityCoefficient;
+            double caloriesSum = productsService.countUserCaloriesSum(user.getUserId(), user.getActivity(), user.getAge());
             model.addAttribute("caloriesSum", (int) caloriesSum);
         } else {
             model.addAttribute("hasMetrics", false);
