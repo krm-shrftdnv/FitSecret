@@ -25,6 +25,9 @@ public class FoodRecommendationsController {
     @Autowired
     UsersService usersService;
 
+    // обрабатывает "/food", выводит список продуктов и,
+    // если у пользователя есть данные о замерах, максимальную сумму калорий в день,
+    // иначе выдаст предупреждение
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/food")
     public String getFoodPage(Authentication authentication, Model model){

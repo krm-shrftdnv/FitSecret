@@ -35,6 +35,8 @@ public class ComplexServiceImpl implements ComplexService {
     @Autowired
     UsersService usersService;
 
+    // возвращает пользователю все подходящие комплексы
+    // по его заболеваниям и типу фигуры
     @Transactional
     @Override
     public Optional<List<Complex>> findAllComplexesForUser(Long userId) {
@@ -54,11 +56,13 @@ public class ComplexServiceImpl implements ComplexService {
         return Optional.of(complexesForUser);
     }
 
+    // возвращает модель комплекса по ID
     @Override
     public Optional<Complex> getComplexById(Long complexId) {
         return complexRepository.findById(complexId);
     }
 
+    // возвращает все комплексы по заданным заболеваниям
     private List<Complex> findComplexesByInjuries(List<Complex> allComplexes, List<Injury> injuries) {
         List<Complex> complexesForUser = new ArrayList<>();
         for (Complex complex : allComplexes) {
@@ -72,6 +76,7 @@ public class ComplexServiceImpl implements ComplexService {
         return complexesForUser;
     }
 
+    // возвращает все комплексы по заданному типу фигуры
     private List<Complex> findComplexesByType(List<Complex> allComplexes, TypeEnum userType) {
         List<Complex> complexesForUser = new ArrayList<>();
         for (Complex complex : allComplexes) {
@@ -83,6 +88,7 @@ public class ComplexServiceImpl implements ComplexService {
         return complexesForUser;
     }
 
+    // возвращает тип фигуры по его замерам
     private TypeEnum getUserBodyType(User user) {
         Metrics metrics = metricsService.getUserLastMetrics(user.getUserId()).get();
         int og = metrics.getOG();

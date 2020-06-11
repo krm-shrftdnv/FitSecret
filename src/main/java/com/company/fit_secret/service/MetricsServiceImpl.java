@@ -21,6 +21,7 @@ public class MetricsServiceImpl implements MetricsService {
     @Autowired
     UsersRepository usersRepository;
 
+    // записывает в бд данные о замерах пользователя
     @Override
     public void addMetrics(Long id, MetricsDto dto) {
         Metrics metrics = Metrics.builder()
@@ -35,6 +36,7 @@ public class MetricsServiceImpl implements MetricsService {
         metricsRepository.save(metrics);
     }
 
+    // возвращает замеры пользователя за всё время
     @Override
     public List<Metrics> getMetricsByUserId(Long userId) {
         List<Metrics> userMetrics = new ArrayList<>();
@@ -44,11 +46,13 @@ public class MetricsServiceImpl implements MetricsService {
         return userMetrics;
     }
 
+    // возвращает последние замеры пользователя
     @Override
     public Optional<Metrics> getUserLastMetrics(Long userId) {
         return metricsRepository.findFirstByUserIdOrderByDateDesc(userId);
     }
 
+    // возвращает первые замеры пользователя
     @Override
     public Optional<Metrics> getUserFirstMetrics(Long userId) {
         return metricsRepository.findFirstByUserIdOrderByDateAsc(userId);

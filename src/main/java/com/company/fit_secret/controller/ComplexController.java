@@ -30,6 +30,8 @@ public class ComplexController {
     @Autowired
     ComplexService complexService;
 
+    // обрабатывает "/training", выводит все подходящие пользователю комплексы,
+    // если таких не имеется, предложит заполнить данные о себе или ждать новых комплексов
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/training")
     public String getTrainingPage(Authentication authentication, Model model){
@@ -45,6 +47,7 @@ public class ComplexController {
         return "training";
     }
 
+    // обрабатывает "/complex{complex-id}", где {complex-id} - число, ID комплекса
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/complex{complex-id}")
     public String getComplexPage(Model model, @PathVariable(name = "complex-id")String complexId){
@@ -59,6 +62,7 @@ public class ComplexController {
         return "complex";
     }
 
+    // метод считывания файла в строку, используется для чтения файлов с комплексами
     private static String readFileLineByLine(String filePath) {
         StringBuilder contentBuilder = new StringBuilder();
         try (Stream<String> stream = Files.lines( Paths.get(filePath), StandardCharsets.UTF_8))

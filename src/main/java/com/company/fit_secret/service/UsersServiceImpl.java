@@ -24,6 +24,7 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
     UsersRepository usersRepository;
 
+    // сохраняет в бд данные о заболеваниях пользователя
     @Transactional
     @Override
     public void saveInjuries(Long userId, String[] injuries) {
@@ -41,6 +42,7 @@ public class UsersServiceImpl implements UsersService {
         }
     }
 
+    // сохраняет в бд данные об уровне активности пользователя
     @Transactional
     @Override
     public void setActivity(Long userId, String activityString) {
@@ -49,6 +51,7 @@ public class UsersServiceImpl implements UsersService {
         usersRepository.save(user);
     }
 
+    // возвращает список всех заболеваний пользователя
     @Transactional
     @Override
     public List<Injury> getUserInjuries(Long userId) {
@@ -56,6 +59,7 @@ public class UsersServiceImpl implements UsersService {
         return new ArrayList<>(user.getInjuries());
     }
 
+    // возвращает модель пользователя по ID
     @Override
     public User getUserById(Long userId) {
         return usersRepository.findById(userId).get();

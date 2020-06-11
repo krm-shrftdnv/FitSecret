@@ -19,6 +19,8 @@ public class SignUpServiceImpl implements SignUpService {
     @Autowired
     UsersRepository usersRepository;
 
+    // добавляет пользователя в базу данных,
+    // предварительно проверив на уже существующую почту и несовпадение паролей
     @Override
     public void addUser(SignUpDto dto) throws DuplicateEntryException, NoMatchException {
         if (usersRepository.findByEmail(dto.getEmail()).isPresent()) {

@@ -20,12 +20,14 @@ public class ProductsServiceImpl implements ProductsService {
     @Autowired
     MetricsService metricsService;
 
+    // возвращает список продуктов заданной категории
     @Override
     public List<Product> getProductsByCategory(String categoryString) {
         Category category = Category.valueOf(categoryString);
         return productsRepository.findAllByCategory(category);
     }
 
+    // возвращает дневную сумму калорий пользователя
     @Override
     public double countUserCaloriesSum(Long userId, Activity userActivity, int userAge) {
         Metrics metrics = metricsService.getUserLastMetrics(userId).get();

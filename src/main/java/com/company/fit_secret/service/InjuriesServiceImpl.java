@@ -14,6 +14,7 @@ public class InjuriesServiceImpl implements InjuriesService {
     @Autowired
     InjuriesRepository injuriesRepository;
 
+    // возвращает список всех заболеваний из бд
     @Override
     public List<Injury> getAllInjuries() {
         return injuriesRepository.findAll();

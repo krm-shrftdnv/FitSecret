@@ -19,6 +19,8 @@ public class ProfileController {
     @Autowired
     MetricsService metricsService;
 
+    // обрабатывает "/profile", возвращает страницу profile с ссылками на другие страницы сайта,
+    // если у пользователя не заполнены данные, выдаст предупреждение
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/profile")
     public String getProfilePage(Authentication authentication, Model model) {
@@ -28,7 +30,6 @@ public class ProfileController {
         if(metricsService.getMetricsByUserId(user.getUserId()).size() == 0){
             model.addAttribute("notification", "Вы должны ввести Ваши замеры для корректной работы системы");
         }
-
         return "profile";
     }
 

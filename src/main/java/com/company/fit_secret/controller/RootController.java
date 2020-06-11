@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class RootController {
 
+    // обрабатывает "/", авторизованного пользователя перенаправляет на /profile,
+    // неавторизованному выдает welcome страницу
     @GetMapping("/")
     public String getRootPage(Authentication authentication) {
         if (authentication != null) {

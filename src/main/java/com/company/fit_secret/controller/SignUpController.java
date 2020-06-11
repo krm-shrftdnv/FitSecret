@@ -16,13 +16,15 @@ public class SignUpController {
 
     @Autowired
     SignUpService signUpService;
-
+    // обрабатывает "/signUp"(get), возвращает страницу регистрации
     @PreAuthorize("permitAll()")
     @GetMapping("/signUp")
     public String getSignUpPage() {
         return "sign_up";
     }
 
+    // обрабатывает "/signUp"(post), регистрирует пользователя,
+    // в случае ошибки, возвращает страницу регистрации с ошибкой
     @PreAuthorize("permitAll()")
     @PostMapping("/signUp")
     public String signUp(SignUpDto dto, Model model) {

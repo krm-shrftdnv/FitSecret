@@ -30,6 +30,8 @@ public class InfoController {
     @Autowired
     InjuriesService injuriesService;
 
+    // обрабатывает "/info", возвращает страницу с данными о пользователе,
+    // если у пользователя не заполнены данные, выдаст предупреждение
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/info")
     public String getInfoPage(Authentication authentication, Model model) {
@@ -78,6 +80,8 @@ public class InfoController {
         return "info";
     }
 
+    // обрабатывает post-запрос на "/saveInjuries",
+    // сохраняет введенные пользователем данные о заболеваниях
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/saveInjuries")
     public String saveInjuries(Authentication authentication, @RequestParam(name = "injuries[]") String[] injuries) {
@@ -87,6 +91,8 @@ public class InfoController {
         return "redirect:/info";
     }
 
+    // обрабатывает post-запрос на "/setActivity",
+    // сохраняет введенные пользователем данные об уровне активности
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/setActivity")
     public String setActivityLevel(Authentication authentication, @RequestParam(name = "activity") String activityString) {

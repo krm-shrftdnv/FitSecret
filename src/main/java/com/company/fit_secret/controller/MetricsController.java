@@ -25,6 +25,9 @@ public class MetricsController {
     @Autowired
     MetricsService metricsService;
 
+    // обрабатывает "/metrics", возвращает страницу с данными о замерах пользователя,
+    // если он их ещё не вводил или прошла неделя с последнего ввода,
+    // выдаст ссылку на форму ввода замеров
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/metrics")
     public String getMetricsPage(Authentication authentication, Model model) {
@@ -61,6 +64,10 @@ public class MetricsController {
         return "metrics";
     }
 
+    // обрабатывает "/metrics/form", возвращает страницу
+    // с формой ввода замеров, если пользователь не вводил данных
+    // или если вводил данные 7 дней назад или ранее,
+    // иначе вернет предупреждение с датой, когда надо обновить данные
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/metrics/form")
     public String getMetricsForm(Authentication authentication, Model model) {
@@ -75,6 +82,7 @@ public class MetricsController {
         return "metrics_form";
     }
 
+    // обрабатыавет post-запрос на "/metrics/form", сохраняет данные о замерах пользователя
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/metrics/form")
     public String postMetricsForm(Authentication authentication, MetricsDto dto) {
