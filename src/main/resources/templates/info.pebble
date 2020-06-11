@@ -43,25 +43,25 @@
 
             <h4 style="color: red">{{ injuriesMessage }}</h4>
             <form action="/saveInjuries" method="post">
-                <div class="checkselect form-group">
+                <div class="checkselect">
                     {% for injury in injuriesList %}
-                        <label><input type="checkbox" name="injuries[]" class="form-control"
+                        <label><input type="checkbox" name="injuries[]"
                                       value="{{ injury.name }}">{{ injury.name }}
                         </label>
                     {% endfor %}
                 </div>
-                <input type="submit" class="btn btn-light" value="Save">
+                <input type="submit" class="btn btn-light" value="Сохранить">
             </form>
 
         {% endif %}
         <div class="col">
             <div class="col">
                 {% if(hasMetrics) %}
-                    <span><b>Height:</b> {{ height }}</span><br/>
-                    <span><b>Weight:</b> {{ weight }}</span><br/>
-                    <span><b>OG:</b> {{ OG }}</span><br/>
+                    <span><b>Рост:</b> {{ height }}</span><br/>
+                    <span><b>Вес:</b> {{ weight }}</span><br/>
+                    <span><b>ОГ:</b> {{ OG }}</span><br/>
                     <span><b>OT:</b> {{ OT }}</span><br/>
-                    <span><b>OB:</b> {{ OB }}</span><br/>
+                    <span><b>ОБ:</b> {{ OB }}</span><br/>
                 {% else %}
                     <a href="/metrics/form">{{ metricsMessage }}</a>
                 {% endif %}
